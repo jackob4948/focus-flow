@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Focus Flow</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1>Focus&nbsp;Flow</h1>
+      <div class="stats">
+        <span class="stat" id="streakStat" title="Consecutive days with a completed session">🔥 <span id="streakCount">0</span> day streak</span>
+        <span class="stat" id="todayStat">✅ <span id="todayCount">0</span> sessions today</span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="timer-card">
+        <div class="mode-tabs">
+          <button class="mode-tab active" data-mode="focus">Focus</button>
+          <button class="mode-tab" data-mode="short">Short Break</button>
+          <button class="mode-tab" data-mode="long">Long Break</button>
+        </div>
+
+        <div class="active-task" id="activeTaskLabel">No task selected</div>
+
+        <div class="ring-wrap">
+          <svg class="ring" viewBox="0 0 240 240">
+            <circle class="ring-track" cx="120" cy="120" r="108"></circle>
+            <circle class="ring-progress" id="ringProgress" cx="120" cy="120" r="108"></circle>
+          </svg>
+          <div class="time-display" id="timeDisplay">25:00</div>
+        </div>
+
+        <div class="controls">
+          <button class="btn secondary" id="resetBtn">Reset</button>
+          <button class="btn primary" id="startPauseBtn">Start</button>
+          <button class="btn secondary" id="skipBtn">Skip</button>
+        </div>
+
+        <div class="presets">
+          <button class="preset" data-focus="25" data-short="5" data-long="15">25 / 5</button>
+          <button class="preset" data-focus="50" data-short="10" data-long="20">50 / 10</button>
+          <button class="preset" data-focus="15" data-short="3" data-long="10">15 / 3</button>
+          <button class="preset" id="customToggle">Custom</button>
+        </div>
+
+        <form class="custom-form" id="customForm" hidden>
+          <label>Focus<input type="number" id="customFocus" min="1" max="180" step="1" inputmode="numeric"></label>
+          <label>Short<input type="number" id="customShort" min="1" max="60" step="1" inputmode="numeric"></label>
+          <label>Long<input type="number" id="customLong" min="1" max="90" step="1" inputmode="numeric"></label>
+          <button type="submit" class="btn primary small">Apply</button>
+        </form>
+      </section>
+
+      <section class="tasks-card">
+        <form id="taskForm" class="task-form">
+          <input type="text" id="taskInput" placeholder="What are you working on?" autocomplete="off" maxlength="80">
+          <button type="submit" class="btn primary small">Add</button>
+        </form>
+        <ul class="task-list" id="taskList"></ul>
+        <p class="empty-hint" id="emptyHint">Add a task, then select it to start focusing.</p>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>Pick a task, hit Start, and let a session finish to log a 🍅. Data stays in this browser.</span>
+    </footer>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
